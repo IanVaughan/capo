@@ -24,7 +24,7 @@ module Capo
 
       Thread.new(deployment) do |deployment|
         build_log = OutputLog.new
-        build_log.puts "== Started at : #{Time.now}"
+        build_log.puts "== Started at : #{Time.now}\n"
 
         # TODO 10% 50% etc, grep output for key points
         Open3.popen2e(cmd) do |stdin, stdout_err, wait_thr|
