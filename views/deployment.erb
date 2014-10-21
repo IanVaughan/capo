@@ -1,0 +1,15 @@
+<h3>Metadata</h3>
+<ul>
+  <li>Who: <%= metadata.who %></li>
+  <li>Date: <%= metadata.started %></li>
+  <li>Command: <p class="console"><%= metadata.cmd %></p></li>
+</ul>
+
+<h3>Output</h3>
+<div class="console" >
+  <textarea rows="40" cols="150" id="outputText">
+    <%= log.join('') %>
+  </textarea >
+</div>
+<br/>
+<br/>
