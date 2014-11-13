@@ -16,19 +16,19 @@ TODO sort running from cap deploy / puppet
 
 You can curl the service to kick it off :
 
-Todo a basic deploy
+Todo a basic deploy normally :
 
     cap production death_star deploy
 
-You'd send something like
+You send :
 
     curl http://foo:bar@0.0.0.0:9898/deploy?who=ian&app=death_star
 
-To do something like
+Or, to do :
 
     BRANCH=newdesign-master-ian bundle exec cap custom deploy
 
-You'd send this
+You send :
 
     curl http://foo:bar@0.0.0.0:9898/deploy?branch=newdesign-master-ian&server=custom&who=ian&app=death_star
 
