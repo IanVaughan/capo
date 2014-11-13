@@ -22,7 +22,7 @@ QS = require 'querystring'
 server_url = process.env.CAPO_HOST
 
 module.exports = (robot) ->
-  robot.respond /capo help/i, (msg) ->
+  robot.respond /deploy help/i, (msg) ->
     text = "Capo-o-matic at your service! (goto " + server_url + " for the web interface)\n"
     text += "deploy info - shows the last 5 deployments\n"
     text += "deploy branch <branch name> [<force>] - starts a custom deploy (of death_star) from branch name\n"
@@ -30,11 +30,11 @@ module.exports = (robot) ->
     msg.reply(text)
 
   robot.respond /deploy info/i, (msg) ->
-    msg.http(server_url + "/deploy")
+    msg.http(server_url + "/info")
       .get() (err, res, body) ->
         msg.send(body)
 
-  robot.respond /deploy branch ?([\w\-\_]+)? ?(.*)?/i, (msg) ->
+  robot.respond /deploy branch ([\w\-\_]+) ?(force)?/i, (msg) ->
     branch = msg.match[1]
     force = msg.match[2]
 
@@ -50,9 +50,8 @@ module.exports = (robot) ->
       force: force_set
     })
 
-    msg.http(server_url + "/deploy")
-      .post(data) (err, res, body) ->
-        msg.send(res.statusCode)
+    msg.http(server_url + "/deploy?" + data)
+      .get() (err, res, body) ->
         switch res.statusCode
           when 200
             msg.send(body)
@@ -60,7 +59,7 @@ module.exports = (robot) ->
             msg.send("Something was wrong, try again!")
             msg.send(body)
 
-  robot.respond /deploy ?([\w]+)? ?(.*)?/i, (msg) ->
+  robot.respond /deploy (production|staging) ?(force)?/i, (msg) ->
     env = msg.match[1]
     force = msg.match[2]
 
