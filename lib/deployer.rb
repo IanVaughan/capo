@@ -12,6 +12,7 @@ module Capo
       cmd = ''
       cmd << "ALLOW_NO_CHANGE_DEPLOYMENTS=true " if force == 'true'
       cmd << "BRANCH=#{branch} " if branch
+      cmd << "cd /home/ubuntu/governor && "
       cmd << "bundle exec cap #{server} "
       cmd << "#{app} " unless branch
       cmd << "deploy"
