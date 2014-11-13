@@ -3,8 +3,6 @@ require 'sinatra/base'
 module Capo
   class Server < Sinatra::Base
 
-    set :public_folder, File.dirname(__FILE__) + '/../static'
-    set :views, File.dirname(__FILE__) + '/../views'
 
     # TODO: make env var or just better
     use Rack::Auth::Basic, "Protected Area" do |username, password|

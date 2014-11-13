@@ -1,13 +1,16 @@
-<table>
-  <tr>
-    <th>Build</th>
-    <th>Who</th>
-    <th>What</th>
-    <th>Started</th>
-    <th>Finished</th>
-    <th>Output</th>
-    <th>Delete</th>
-  </tr>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Build</th>
+      <th>Who</th>
+      <th>What</th>
+      <th>Started</th>
+      <th>Finished</th>
+      <th>Output</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
   <% deployments.reverse.each_with_index do |d,i| %>
     <tr>
       <td><%= d.build_number %></td>
@@ -18,9 +21,10 @@
       <td><a href="/deployment/<%= d.build_number %>">View</a></td>
       <td>
         <% unless d.ended.nil? %>
+          <a href="/delete/<%= d.build_number %>">Delete</a>
         <% end %>
-          <a href="/delete/<%= d.build_number %>">delete</a>
       </td>
     </td>
   <% end %>
+  </tbody>
 </table>
