@@ -11,17 +11,17 @@
     </tr>
   </thead>
   <tbody>
-  <% deployments.reverse.each_with_index do |d,i| %>
+  <% deployments.reverse.each do |deployment| %>
     <tr>
-      <td><%= d.build_number %></td>
-      <td><%= d.who %></td>
-      <td class="console"><%= d.cmd %></td>
-      <td class='date'><%= Time.parse(d.started).strftime('%A, %d %b %Y %l:%M %p') %></td>
-      <td class='date'><%= d.ended.nil? ? 'running' : Time.parse(d.ended).strftime('%l:%M %p') %></td>
-      <td><a href="/deployment/<%= d.build_number %>">View</a></td>
+      <td><%= deployment.build_number %></td>
+      <td><%= deployment.who %></td>
+      <td class="console"><%= deployment.cmd %></td>
+      <td class='date'><%= Time.parse(deployment.started).strftime('%A, %d %b %Y %l:%M %p') %></td>
+      <td class='date'><%= deployment.ended.nil? ? 'running' : Time.parse(deployment.ended).strftime('%l:%M %p') %></td>
+      <td><a href="/deployment/<%= deployment.build_number %>">View</a></td>
       <td>
-        <% unless d.ended.nil? %>
-          <a href="/delete/<%= d.build_number %>">Delete</a>
+        <% unless deployment.ended.nil? %>
+          <a class="btn btn-xs btn-danger" href="/delete/<%= deployment.build_number %>">Delete</a>
         <% end %>
       </td>
     </td>
