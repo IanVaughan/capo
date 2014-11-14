@@ -1,13 +1,22 @@
-<h3>Metadata</h3>
-<ul>
-  <li>Who: <%= metadata.who %></li>
-  <li>Date: <%= metadata.started %></li>
-  <li>Command: <p class="console"><%= metadata.cmd %></p></li>
-</ul>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Metadata</h3>
+  </div>
+  <div class="panel-body">
+    <ul>
+      <li>Who: <%= metadata.who %></li>
+      <li>Date: <%= metadata.started %></li>
+      <li>Command: <pre><%= metadata.cmd %></pre></li>
+    </ul>
+  </div>
+</div>
 
-<h3>Output</h3>
-<div class="console" >
-  <textarea rows="40" cols="150" id="outputText">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Output</h3>
+  </div>
+  <textarea rows="40" cols="177" id="outputText">
     <%= log.join('') %>
-  </textarea >
+    </textarea >
+  </div>
 </div>
