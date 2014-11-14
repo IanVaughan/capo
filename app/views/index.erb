@@ -17,10 +17,10 @@
       <td><%= deployment.who %></td>
       <td class="console"><%= deployment.cmd %></td>
       <td class='date'><%= Time.parse(deployment.started).strftime('%A, %d %b %Y %l:%M %p') %></td>
-      <td class='date'><%= deployment.ended.nil? ? 'running' : Time.parse(deployment.ended).strftime('%l:%M %p') %></td>
+      <td class='date'><%= deployment.running? ? 'running' : Time.parse(deployment.ended).strftime('%l:%M %p') %></td>
       <td><a href="/deployment/<%= deployment.build_number %>">View</a></td>
       <td>
-        <% unless deployment.ended.nil? %>
+        <% unless deployment.running? %>
           <a class="btn btn-xs btn-danger" href="/delete/<%= deployment.build_number %>">Delete</a>
         <% end %>
       </td>
