@@ -77,5 +77,13 @@ module Capo
         ['ended:', ended].join,
       ].join(', ')
     end
+
+    def running?
+      ended.nil?
+    end
+
+    def successful?
+      @exit_status == 0
+    end
   end
 end
