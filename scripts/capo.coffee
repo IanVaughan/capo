@@ -8,6 +8,7 @@
 #   CAPO_HOST  eg "http://foo:bar@0.0.0.0:9292/"
 #
 # Commands:
+#   info - shows info on previous 5 deploys
 #   deploy - deploys death_star, e.g. 'deploy production'
 #   deploy branch - deploys a custom branch, eg 'deploy branch newdesign-master'
 #
@@ -54,6 +55,10 @@ module.exports = (robot) ->
       .get() (err, res, body) ->
         switch res.statusCode
           when 200
+            pattern = ///
+              .*build:(\d{,r4})
+            ///
+            body = body.match(pattern[1])
             msg.send(body)
           else
             msg.send("Something was wrong, try again!")
