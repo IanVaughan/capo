@@ -12,16 +12,28 @@
   </thead>
   <tbody>
   <% deployments.reverse.each do |deployment| %>
-    <tr>
+    <%
+        css = if deployment.running?
+                'warning'
+              elsif deployment.successful?
+                'success'
+              else
+                'danger'
+              end
+    %>
+    <tr class="<%= css %>">
       <td><%= deployment.build_number %></td>
       <td><%= deployment.who %></td>
+      <%# TODO font %>
       <td class="console"><%= deployment.cmd %></td>
       <td class='date'><%= Time.parse(deployment.started).strftime('%A, %d %b %Y %l:%M %p') %></td>
       <td class='date'><%= deployment.running? ? 'running' : Time.parse(deployment.ended).strftime('%l:%M %p') %></td>
       <td><a href="/deployment/<%= deployment.build_number %>">View</a></td>
       <td>
         <% unless deployment.running? %>
-          <a class="btn btn-xs btn-danger" href="/delete/<%= deployment.build_number %>">Delete</a>
+          <a class="btn btn-xs btn-info" href="/delete/<%= deployment.build_number %>">Delete</a>
+        <% else %>
+          <a class="btn btn-xs btn-danger" href="/stop/<%= deployment.build_number %>">Stop</a>
         <% end %>
       </td>
     </td>
