@@ -16,11 +16,18 @@ module Capo
       cmd << "bundle exec cap #{server} "
       cmd << "#{app} " unless branch
       cmd << "deploy"
-      run(cmd, who)
+
+      pretty_cmd = ''
+      pretty_cmd << "BRANCH=#{branch} " if branch
+      pretty_cmd << "#{server} "
+      pretty_cmd << "#{app} " unless branch
+      pretty_cmd << "forced " if force == 'true'
+
+      run(cmd, who, pretty_cmd)
     end
 
-    def self.run(cmd, who)
-      deployment = Deployment.new(nil, cmd, who, Time.now)
+    def self.run(cmd, who, pretty_cmd)
+      deployment = Deployment.new(nil, pretty_cmd, who, Time.now)
       deployment.start
 
       Thread.new(deployment) do |deployment|
