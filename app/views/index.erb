@@ -33,7 +33,7 @@
         <% unless deployment.running? %>
           <a class="btn btn-xs btn-info" href="/delete/<%= deployment.build_number %>">Delete</a>
         <% else %>
-          <a class="btn btn-xs btn-danger" href="/stop/<%= deployment.build_number %>">Stop</a>
+          <a class="btn btn-xs btn-danger disabled" href="/stop/<%= deployment.build_number %>">Stop</a>
         <% end %>
       </td>
     </td>
