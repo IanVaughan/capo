@@ -55,10 +55,6 @@ module.exports = (robot) ->
       .get() (err, res, body) ->
         switch res.statusCode
           when 200
-            pattern = ///
-              .*build:(\d{,r4})
-            ///
-            body = body.match(pattern[1])
             msg.send(body)
           else
             msg.send("Something was wrong, try again!")
@@ -81,10 +77,11 @@ module.exports = (robot) ->
 
     msg.http(server_url + "/deploy")
       .post(data) (err, res, body) ->
-        msg.send(res.statusCode)
         switch res.statusCode
           when 200
+            link = body.replace(/Started! build:/, server_url)
             msg.send(body)
+            msg.send(link)
           else
             msg.send("Something was wrong, try again!")
             msg.send(body)
