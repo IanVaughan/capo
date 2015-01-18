@@ -11,6 +11,7 @@ module Capo
 
       cmd = ''
       cmd << "cd /home/ubuntu/governor && "
+      cmd << "GIT_AUTHOR_NAME=#{who} " # for capistrano slack notification
       cmd << "ALLOW_NO_CHANGE_DEPLOYMENTS=true " if force == 'true'
       cmd << "BRANCH=#{branch} " if branch
       cmd << "bundle exec cap #{server} "
