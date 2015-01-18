@@ -6,6 +6,7 @@
 #
 # Configuration:
 #   CAPO_HOST  eg "http://foo:bar@0.0.0.0:9292/"
+#   heroku config:set CAPO_HOST=http://foo:bar@server.com:port/
 #
 # Commands:
 #   info - shows info on previous 5 deploys
