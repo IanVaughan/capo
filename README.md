@@ -23,6 +23,9 @@ AWS SG has a custom TCP rule on port 8888 from any source
 
 ## Config
 
+    export CAPO_USERNAME=foo
+    export CAPO_PASSWORD=bar
+
     export AWS_ACCESS_KEY_ID=xxx
     export AWS_SECRET_ACCESS_KEY=yyy
 

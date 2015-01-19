@@ -3,10 +3,8 @@ require 'sinatra/base'
 module Capo
   class Server < Sinatra::Base
 
-
-    # TODO: make env var or just better
     use Rack::Auth::Basic, "Protected Area" do |username, password|
-      username == 'foo' && password == 'bar'
+      username == ENV['CAPO_USERNAME'] && password == ENV['CAPO_PASSWORD']
     end
 
     get '/' do
