@@ -44,6 +44,7 @@ module Capo
 
         deployment.finished
 
+        build_log.puts "\n== Script finished with exit code:#{$?.exitstatus}"
         build_log.puts "\n== Ended at : #{Time.now}"
       end
 
