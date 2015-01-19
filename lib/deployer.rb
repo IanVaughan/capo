@@ -36,7 +36,6 @@ module Capo
         build_log = OutputLog.new
         build_log.puts "\n== Started at : #{Time.now}\n"
 
-        # TODO 10% 50% etc, grep output for key points
         Open3.popen2e(cmd) do |stdin, stdout_err, wait_thr|
           while line = stdout_err.gets
             build_log.puts line

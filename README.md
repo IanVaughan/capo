@@ -33,6 +33,9 @@ AWS SG has a custom TCP rule on port 8888 from any source
 
     export REDISTOGO_URL=redis://localhost:6379
 
+    eval `ssh-agent`
+    ssh-add
+
 ## Run
 
 TODO sort running from cap deploy / puppet
@@ -40,6 +43,8 @@ TODO sort running from cap deploy / puppet
     cd capo
     rackup -D
 
+
+$ AWS_ACCESS_KEY_ID=key AWS_SECRET_ACCESS_KEY=key REDISTOGO_URL=redis://10.36.31.193:6379 rackup -D
 
 ## Usage
 
@@ -78,4 +83,4 @@ Set the server url to point to the running instance above
 
 ssh key something like https://github.com/bensie/sshkey
 Use different redis DB number
-
+Show progress bar, 10% 50% etc, grep output for key points
