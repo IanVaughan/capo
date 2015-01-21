@@ -32,7 +32,7 @@ module Capo
       deployment = Deployment.new(nil, pretty_cmd, who, Time.now)
       deployment.start
 
-      Thread.new(deployment) do |deployment|
+      Thread.new(deployment) do |_deployment|
         build_log = OutputLog.new
         build_log.puts "\n== Started at : #{Time.now}\n"
 
@@ -42,7 +42,7 @@ module Capo
           end
         end
 
-        deployment.finished
+        _deployment.finished
 
         build_log.puts "\n== Script finished with exit code:#{$?.exitstatus}"
         build_log.puts "\n== Ended at : #{Time.now}"
