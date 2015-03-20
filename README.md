@@ -1,3 +1,10 @@
+# Cap-o-matic
+
+A sinatra server that listens for requests to deploy code.
+It uses the project predefined capistrano tasks to push to the requested branch to the desired server, and logs the output so the result of each deploy can be seen by everyone.
+
+Can be hooked upto a CI build to push code to a server on a successfully build, aka, Continuous Delivery.
+
 ## Setup
 
 Need to copy private key onto remote machine to get source there.
