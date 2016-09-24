@@ -20,4 +20,4 @@ EXPOSE 80
 ARG GIT_REVISION
 ENV GIT_REVISION ${GIT_REVISION:-not set}
 
-CMD ["rackup", "--host", "0.0.0.0", "--p", "80"]
+CMD ["rackup", "--host", "0.0.0.0"]

@@ -4,8 +4,8 @@ gem 'sinatra'
 gem 'redis'
 gem 'dotenv'
 gem 'sidekiq'
+gem 'pry'
 
 group :test do
   gem 'rspec'
-  gem 'pry'
 end

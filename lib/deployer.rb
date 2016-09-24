@@ -30,23 +30,7 @@ class Deployer
   def self.run(cmd, who, pretty_cmd)
     deployment = Deployment.new(nil, pretty_cmd, who, Time.now)
     deployment.start
-
-    Thread.new(deployment) do |_deployment|
-      build_log = OutputLog.new
-      build_log.puts "\n== Started at : #{Time.now}\n"
-
-      Open3.popen2e(cmd) do |stdin, stdout_err, wait_thr|
-        while line = stdout_err.gets
-          build_log.puts line
-        end
-      end
-
-      _deployment.finished
-
-      build_log.puts "\n== Script finished with exit code:#{$?.exitstatus}"
-      build_log.puts "\n== Ended at : #{Time.now}"
-    end
-
+    DeplomentWorker.perform_async(deployment.build_number, cmd)
     deployment.build_number
   end
 end

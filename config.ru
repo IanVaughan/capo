@@ -1,7 +1,11 @@
 $:.unshift File.expand_path("../", __FILE__)
 require 'dotenv'
 Dotenv.load
-require 'sinatra'
 require 'capo'
+require './app/server'
 
-run Server
+require 'sidekiq/web'
+run Rack::URLMap.new(
+  '/' => Server,
+  '/sidekiq' => Sidekiq::Web
+)

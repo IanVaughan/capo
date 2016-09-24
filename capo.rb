@@ -1,6 +1,3 @@
-# Cap-o-matic
-
-require_relative 'app/server'
 require_relative 'lib/deployer'
 require_relative 'lib/deployment'
 require_relative 'lib/output_log'

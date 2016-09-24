@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'pry'
 
 class Server < Sinatra::Base
   use Rack::Auth::Basic, "Protected Area" do |username, password|

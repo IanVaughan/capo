@@ -7,8 +7,16 @@ services:
     depends_on:
       - redis
     ports:
-      - '9292:80'
-    command: rackup --host 0.0.0.0 --port 80
+      - '9292:9292'
+    command: rackup --host 0.0.0.0 
+
+  sidekiq:
+    build: .
+    env_file:
+      - .env
+    depends_on:
+      - redis
+    command: bundle exec sidekiq -r ./capo.rb
 
   redis:
     image: 'redis'
