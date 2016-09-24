@@ -32,7 +32,7 @@ class Server < Sinatra::Base
     OutputLog.read(number.to_i)
   end
 
-  get '/delete/:build_number' do |build_number|
+  delete '/deployment/:build_number' do |build_number|
     Deployment.delete(build_number.to_i)
     redirect '/'
   end
