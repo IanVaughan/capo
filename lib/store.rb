@@ -48,7 +48,7 @@ class Store
     end
 
     def url
-      ENV["REDISTOGO_URL"] || 'redis://localhost:6379'
+      ENV["REDIS_URL"] || 'redis://localhost:6379'
     end
   end
 end
