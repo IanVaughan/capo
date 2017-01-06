@@ -3,7 +3,6 @@ require 'open3'
 class Deployer
   def self.build params
     branch = params.fetch('branch', nil)
-    server = params.fetch('server')
     app = params.fetch('app')
     who = params.fetch('who')
     force = params.fetch('force', false)
@@ -14,13 +13,12 @@ class Deployer
     cmd << "USER=#{who} " # for capistrano_deploy_lock
     cmd << "ALLOW_NO_CHANGE_DEPLOYMENTS=true " if force == 'true'
     cmd << "BRANCH=#{branch} " if branch
-    cmd << "bundle exec cap #{server} "
+    cmd << "bundle exec cap "
     cmd << "#{app} " unless branch
     cmd << "deploy"
 
     pretty_cmd = ''
     pretty_cmd << "BRANCH=#{branch} " if branch
-    pretty_cmd << "#{server} "
     pretty_cmd << "#{app} " unless branch
     pretty_cmd << "forced " if force == 'true'
 
